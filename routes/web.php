@@ -42,6 +42,8 @@ Route::get('/main', [MainController::class, 'index',])->name('main.index');
 Route::group(['namespace' => 'App\Http\Controllers\Admin', 'prefix' => '/admin'], function () {
     Route::group(['namespace' => 'Post'], function () {
         Route::get('/post', IndexController::class)->name('admin.post.index');
+        Route::get('/post/create', \App\Http\Controllers\Admin\Post\CreateController::class)->name('admin.post.create');
+        Route::post('/post', \App\Http\Controllers\Admin\Post\StoreController::class)->name('admin.post.store');
     });
 });
 

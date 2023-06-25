@@ -1,8 +1,10 @@
 <?php
 
+
 namespace App\Http\Filters;
 
-use Illuminate\Contracts\Database\Eloquent\Builder;
+
+use Illuminate\Database\Eloquent\Builder;
 
 interface FilterInterface
 {
