@@ -6,7 +6,7 @@
             <a href="{{route('admin.post.create')}}" class="btn btn-primary m-3">Add one</a>
         </div>
         @foreach($posts as $post)
-            <div><a href="{{route('post.show', $post->id)}}">{{$post->id}}. {{$post->title}} </a></div>
+            <div><a href="{{route('admin.post.show', $post->id)}}">{{$post->id}}. {{$post->title}} </a></div>
         @endforeach
 
         <div class="mt-3">
