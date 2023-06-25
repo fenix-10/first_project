@@ -11,8 +11,9 @@ class EditController extends BaseController
 {
     public function __invoke(Post $post)
     {
+        $postsCount = Post::all()->count();
         $categories = Category::all();
         $tags = Tag::all();
-        return view('admin.post.edit', compact('post', 'categories', 'tags'));
+        return view('admin.post.edit', compact('post', 'categories', 'tags', 'postsCount'));
     }
 }

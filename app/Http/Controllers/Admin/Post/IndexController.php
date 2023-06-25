@@ -11,10 +11,14 @@ class IndexController extends BaseController
 {
     public function __invoke(FilterRequest $request)
     {
+
+
         $data = $request->validated();
         $filter = app()->make(PostFilter::class, ['queryParams' => array_filter($data)]);
         $posts = Post::filter($filter)->paginate(10);
+        $postsCount = Post::all()->count();
+//        dd($posts);
 
-        return view('admin.post.index', compact('posts'));
+        return view('admin.post.index', compact('posts', 'postsCount'));
     }
 }
