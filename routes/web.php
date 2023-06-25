@@ -1,6 +1,7 @@
 <?php
 
 
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\Post\CreateController;
 use App\Http\Controllers\Post\DestroyController;
@@ -23,7 +24,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
+Route::get('/',  [HomeController::class, 'index'])->name('home');
 
 
 Route::group(['prefix' => '/posts'], function () {
@@ -39,7 +40,7 @@ Route::group(['prefix' => '/posts'], function () {
 Route::get('/main', [MainController::class, 'index',])->name('main.index');
 
 
-Route::group(['namespace' => 'App\Http\Controllers\Admin', 'prefix' => '/admin'], function () {
+Route::group(['namespace' => 'App\Http\Controllers\Admin', 'prefix' => '/admin', 'middleware' => 'admin'], function () {
     Route::group(['namespace' => 'Post'], function () {
         Route::get('/posts', IndexController::class)->name('admin.post.index');
         Route::get('/posts/create', \App\Http\Controllers\Admin\Post\CreateController::class)->name('admin.post.create');
