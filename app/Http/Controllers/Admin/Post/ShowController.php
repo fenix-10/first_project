@@ -10,6 +10,7 @@ class ShowController extends BaseController
 {
     public function __invoke(Post $post)
     {
-        return view('admin.post.show', compact('post'));
+        $postsCount = Post::all()->count();
+        return view('admin.post.show', compact('post', 'postsCount'));
     }
 }
