@@ -41,9 +41,13 @@ Route::get('/main', [MainController::class, 'index',])->name('main.index');
 
 Route::group(['namespace' => 'App\Http\Controllers\Admin', 'prefix' => '/admin'], function () {
     Route::group(['namespace' => 'Post'], function () {
-        Route::get('/post', IndexController::class)->name('admin.post.index');
-        Route::get('/post/create', \App\Http\Controllers\Admin\Post\CreateController::class)->name('admin.post.create');
-        Route::post('/post', \App\Http\Controllers\Admin\Post\StoreController::class)->name('admin.post.store');
+        Route::get('/posts', IndexController::class)->name('admin.post.index');
+        Route::get('/posts/create', \App\Http\Controllers\Admin\Post\CreateController::class)->name('admin.post.create');
+        Route::post('/posts', \App\Http\Controllers\Admin\Post\StoreController::class)->name('admin.post.store');
+        Route::get('/posts/{post}', \App\Http\Controllers\Admin\Post\ShowController::class)->name('admin.post.show');
+        Route::get('/posts/{post}/edit', \App\Http\Controllers\Admin\Post\EditController::class)->name('admin.post.edit');
+        Route::patch('/posts/{post}', \App\Http\Controllers\Admin\Post\UpdateController::class)->name('admin.post.update');
+        Route::delete('/posts/{post}', \App\Http\Controllers\Admin\Post\DestroyController::class)->name('admin.post.destroy');
     });
 });
 
@@ -53,6 +57,10 @@ Route::group(['namespace' => 'App\Http\Controllers\Admin', 'prefix' => '/admin']
 
 
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Auth::routes();
 
